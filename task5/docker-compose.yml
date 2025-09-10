@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  task5-back-end:
+    image: softy-pinko-back-end:task5
+    build: ./back-end
+
+  task5-front-end:
+    image: softy-pinko-front-end:task5
+    build: ./front-end
+    depends_on:
+      - task5-back-end
+
+  task5-proxy:
+    image: softy-pinko-proxy:task5
+    build: ./proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - task5-back-end
+      - task5-front-end
