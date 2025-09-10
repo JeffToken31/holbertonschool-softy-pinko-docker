@@ -1,0 +1,1 @@
+sudo docker-compose up --scale task6-back-end=2

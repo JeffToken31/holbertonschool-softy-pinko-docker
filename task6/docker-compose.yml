@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  task6-back-end:
+    image: softy-pinko-back-end:task6
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+
+  task6-front-end:
+    image: softy-pinko-front-end:task6
+    build: 
+      context: ./front-end
+      dockerfile: Dockerfile
+    depends_on:
+      - task6-back-end
+
+  task6-proxy:
+    image: softy-pinko-proxy:task6
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - task6-back-end
+      - task6-front-end
